@@ -25,7 +25,7 @@ app.get('/getTodos', (req, res) => {
             res.json(document);
         }
     });
-})
+});
 
 db.connect((err) => {
     if(err) {
