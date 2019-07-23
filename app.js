@@ -27,6 +27,8 @@ app.get('/getTodos', (req, res) => {
     });
 });
 
+
+// Update
 app.put('/:id', ( req, res) => {
     const todoID = req.params.id;
     const userInput = req.body;
@@ -36,6 +38,20 @@ app.put('/:id', ( req, res) => {
         else{
             res.json(result);
         }      
+    });
+});
+
+// Insert
+
+app.post('/', (req, res) => {
+    const userInput = req.body;
+    db.getDB().collection(collection).insertOne(userInput, (err, result) => {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            res.json( {result: result, document : result.ops[0]});
+        }
     });
 });
 
